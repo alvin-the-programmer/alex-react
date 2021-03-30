@@ -28,27 +28,27 @@ $ npm start
 
 We'll use one frontend view for all this widgets. The goal is to get through as many features. Any css styling can be kept minimal, focus on the react.
 
-### MessageList LVL_0
+### MessageList LVL_0 X
 
 Create a basic `MessageList` component that renders all messages. It should display each message's `alias`, `text`, and `postedAt` fields.
 
-### MessageCreateForm LVL_0
+### MessageCreateForm LVL_0 X
 
 Create a form that will create a new message. Give it a submit button.
 
-### MessageCreateForm LVL_1
+### MessageCreateForm LVL_1  X
 
 The form should not allow a user to submit an empty `alias` or empty `text`. Implement a frontend validation to prevent this. Display some visual cue when they attempt this.
 
-### MessageList LVL_1
+### MessageList LVL_1 X
 
 Implement a refresh button for the `MessageList`.
 
-### MessageCreateForm LVL_2
+### MessageCreateForm LVL_2 X
 
 Successfully submitting the `MessageCreateForm` should refresh the `MessageList`. // finish up this
 
-###  MessageCreateForm LVL_3
+###  MessageCreateForm LVL_3 
 
 Prevent the user from submitting multiple messages at once. The submit button for `MessageCreateForm` should disappear while waiting for a response from the backend. 
 

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import MessageItem from './MessageItem';
+import MessageCreateForm from './MessageCreateForm'
+import './messageList.css'
 
 const MessageList = () => {
     const [messages, setMessages] = useState([]);
-    const [alias, setAlias] = useState("");
-    const [text, setText] = useState("");
 
     const getMessages = async () => {
         const response = await fetch('http://localhost:3001/api/messages');
@@ -18,39 +18,13 @@ const MessageList = () => {
 
     const messageItems = messages.map((message, idx) => <MessageItem key={idx} message={message} />);
 
-    const handleAliasChange = (e) => {
-        setAlias(e.target.value);
-        console.log(alias);
-    };
-
-    const handleTextChange = (e) => {
-        setText(e.target.value);
-        console.log(text);
-    };
-
-    const handleSubmit = async (e) => {
-        // read abt stopPropogation
-        e.preventDefault();
-        const response = await fetch('http://localhost:3001/api/messages', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({alias, text})
-        });
-    }
-
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={alias} onChange={handleAliasChange}/>
-                <input type="text" value={text} onChange={handleTextChange} />
-                <button>submit</button>
-            </form>
-
+        <div id="messageList-container">
+            <MessageCreateForm getMessages={getMessages} />
+            <button onClick={getMessages}>Refresh messages</button>
             <h4>messages</h4>
             {messageItems}
-        </>
+        </div>
     );
 };
 
