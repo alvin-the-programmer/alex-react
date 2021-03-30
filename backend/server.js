@@ -1,28 +1,30 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const db = require('./db-mock');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const db = require("./db-mock");
 
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.json('hello world');
+app.get("/", (req, res) => {
+  res.json("hello world");
 });
 
-app.get('/api/messages', (req, res) => {
+app.get("/api/messages", (req, res) => {
   res.json(db.messages);
-  logDb('messages');
+  logDb("messages");
 });
 
-app.post('/api/messages', (req, res) => {
+app.post("/api/messages", (req, res) => {
   const { alias, text } = req.body;
   const newMessage = { alias, text, postedAt: new Date() };
   db.messages.push(newMessage);
-  res.status(201).json(newMessage);
-  logDb('messages');
+  setTimeout(() => {
+    res.status(201).json(newMessage);
+  }, 1500);
+  logDb("messages");
 });
 
 const logDb = (tableName) => {
